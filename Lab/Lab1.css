@@ -1,0 +1,42 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #333;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+.dnd-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.dnd-section label {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.dnd-section button {
+    padding: 5px 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.dnd-section img {
+  height: 100px;
+  width: auto;
+  border-radius: 8px;
+}
+
+.dnd-section button:hover {
+    background-color: #45a049;
+}
