@@ -1,0 +1,53 @@
+/* Header Styles */
+.header {
+    position: static;
+    padding: 80px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+}
+
+.header h1 {
+    font-size: 40px;
+}
+
+/* Navbar Styles */
+.navbar {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    overflow: hidden;
+    background-color: #333;
+    padding: 10px;
+}
+
+.nav-button {
+    display: inline-block;
+    background: green;
+    color: white;
+    padding: 20px;
+    border: 3px solid yellow;
+    text-decoration: none;
+}
+
+/* Content Styles */
+.content {
+    padding: 20px;
+    background-color: #f1f1f1;
+}
+
+.sidebar{
+    width: 30%;
+    float: left;
+    padding: 20px;
+}
+
+.main{
+    width: 70%;
+    float: left;
+    padding: 20px;
+}
+
+* {
+    background: red !important;
+}
