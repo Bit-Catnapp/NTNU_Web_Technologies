@@ -1,0 +1,12 @@
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    margin-top: 20px;
+}
+
+.contact-info input,
+.contact-info select,
+.contact-info textarea {
+    margin-bottom: 10px;
+}

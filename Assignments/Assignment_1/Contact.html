@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <style>
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-top: 20px;
+        }
+
+        .contact-info input,
+        .contact-info select,
+        .contact-info textarea {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form class="contact-info">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="user-names">Inquiry Type:</label>
+        <select id="user-names" name="user-names" required>
+            <option value="Hobby Suggestion">Hobby Suggestion</option>
+            <option value="Website Feedback">Website Feedback</option>
+        </select>
+
+        <label for="message">Description:</label>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+
+    <p><a href="MyHobbyPage.html">Go back to main page</a></p>
+</body>
+</html>

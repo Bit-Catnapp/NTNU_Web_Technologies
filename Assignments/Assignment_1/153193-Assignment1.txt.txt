@@ -1,0 +1,280 @@
+1: HTML Fundamentals & Form Implementation
+--------------------------------------
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My Hobby Page</title>
+
+    <style>
+        .hobby-table {
+        border: 1px solid black;
+        width: 50%;
+        border-collapse: collapse;
+        }
+
+        .hobby-table th {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        .hobby-table td {
+        border: 1px solid black;
+        padding: 8px;
+        }
+
+        .h-spent {
+        text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Hobby Page</h1>
+    <p>
+        I enjoy spending my free time doing different activities that make me happy.
+    </p>
+    <img src="../../Images/hobby.jpg" alt="Hobby Image">
+
+    <p>Hobbies</p>
+    <ul>
+        <li>Reading</li>
+        <li>Painting</li>
+        <li>Travel</li>
+    </ul><hr>
+
+    <table class="hobby-table">
+        <tr>
+            <th>Hobby</th>
+            <th>Time Spent per Week (hours)</th>
+        </tr>
+        <tr>
+            <td>Gaming</td>
+            <td class="h-spent">24</td>
+        </tr>
+        <tr>
+            <td>Studying</td>
+            <td class="h-spent">40</td>
+        </tr>
+        <tr>
+            <td>Cooking</td>
+            <td class="h-spent">5</td>
+        </tr>
+    </table>
+
+    <P>Hobby Link:
+    <a href="https://www.dndbeyond.com/en">Learn more about hobbies</a>
+    </P>
+</body>
+</html>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact</title>
+    <style>
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            align-items: left;
+            margin-top: 20px;
+        }
+
+        .contact-info input,
+        .contact-info select,
+        .contact-info textarea {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <form class="contact-info">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+
+        <label for="user-names">Inquiry Type:</label>
+        <select id="user-names" name="user-names" required>
+            <option value="Hobby Suggestion">Hobby Suggestion</option>
+            <option value="Website Feedback">Website Feedback</option>
+        </select>
+
+        <label for="message">Description:</label>
+        <textarea id="message" name="message" rows="4" cols="50" required></textarea>
+
+        <button type="submit" value="Submit">Submit</button>
+    </form>
+
+    <p><a href="MyHobbyPage.html">Go back to main page</a></p>
+</body>
+</html>
+
+2: CSS Styling and Box Model
+--------------------------------------
+Part 1:
+______________
+<!DOCTYPE html>
+<html lang="en">    
+<head>
+    <meta charset="UTF-8">
+    <title>My Hobby Page</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Helvetica, sans-serif;
+        }
+
+        #event-card {
+            background-color: #f0fdf4;
+            width: 450px;
+            padding: 25px;
+            margin: 60px auto;
+        }
+
+        .align-wrapper {
+            text-align: center;
+        }
+
+        .event-title {
+            color:#1e293b;
+            text-decoration: underline double #059669;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="event-card" class="align-wrapper">
+        <h2 class="event-title">AI & Design Meetup</h2>
+        <p class="status-alert">Status: Registration Open</p>
+    </div>
+</body>
+</html>
+
+Part 2:
+______________
+1) What is the relative unit in CSS?
+	a)Explain what each CSS unit refers to (i.e., what it is relative to):
+		em = Relative to the font-size of the parent element.
+		rem = Relative to the font-size of the root(<html>) element.
+		% = Relative to the parent element`s size.
+		vh = 1% of the viewport`s height.
+		vw = 1% of the viewport`s width.
+		vmin = 1% of the smaller side of the viewport.
+		vmax = 1% of the larger side of the viewport.
+	
+		
+	b) Calculate the pixel values given:
+		Root(<html>) font-size = 18px 
+		Parent element font-size = 22px
+		Parent container width = 550px
+		Viewport size = 1440px x 900px
+
+	        em = 22px * 1.8em = 39.6px
+		rem = 18px * 2.5rem = 45px
+		% = 500px * 60% = 300px
+		vh = 900px * 0.01 * 7vh = 63
+		vw = 1440px * 0.01 * 8vw = 115.2
+		vmin = 900px * 0.01 * 6vmin = 54
+		vmax = 1440px * 0.01 * 6vmax = 86.4
+
+2) Explain the difference between these two boxes and determine what happens to total box size of
+box1 and box2 when you increase padding from 20px to 30px.
+
+.box1: 
+	This is the "inner part" of box1.
+	When increasing the padding from 20px-->30px the total box size increases.
+	This is due to how the area is calculated.
+
+.box2: 
+	This is the "edge" of box2.
+	When increasing the padding from 20px-->30px the total box size decreases.
+	This is due to how the area is calculated.
+	
+
+3. HTML-CSS Styling List, Table and Forms
+--------------------------------------
+1) Read each story. Decide which CSS property should be applied and write the code.
+____________________
+
+Scenario 1 : A cafe website needs lists. They want the bullets look like squares for the
+menu list.
+
+.cafe-menu {
+
+	list-style-type: squares;
+{
+
+Scenario 2 : A teacher makes a quiz. It needs numbers. Use small Roman numerals like i,
+ii, and iii.
+
+.history-quiz {
+	list-style-type: lower-roman;
+}
+
+Scenario 3 : A store wants custom lists. They have an image named heart.png. Use this
+image as the bullet.
+
+.game-features {
+	list-style-type: url('heart.png');
+}
+
+
+Scenario 4 : Text looks messy on phones. Move the bullets inside the text box block.
+
+.mobile-list {
+	list-style-position: inside;
+}
+
+Scenario 5: The text looks too crowded. Add space between list items. Make the lines
+taller.
+.readable-list {
+	line-height: 10px;
+{
+
+
+2.Consider the following scenarios:
+____________________
+
+Scenario 1: A sports team stats sheet has 100 rows, making it hard to track individual
+player metrics. To fix this, they want every single alternate even row to automatically
+change its background to a light gray color (#eee).
+
+.even {
+	color: #eee;
+}
+
+Scenario 2: A user is looking at a huge data chart. To help them see which row they are
+looking at, make the background color of a row change when the computer mouse
+hovers over it. Also, if a box inside the chart is completely empty, hide its borders.
+
+.data-grid th,
+.data-grid td {
+        border-collapse: separate;
+        empty-cells: hide;
+        border: 1px solid #ccc;
+    }
+
+ tbody tr:hover {
+        background-color: #eee
+    }
+
+Scenario 3: A user clicks inside a text box to start typing an email address. To show the
+box is active and currently receives focus (typing mode), change its background color to
+white.
+
+.email-box {
+            background-color: white;
+	}
+
+Scenario 4: An app built for elderly users needs text fields that are very easy to see.
+Make the text inside the input boxes large (120% size) and change the color of the text
+to a distinct gray color (#555).
+
+.large-box {
+            font-size: 120%;
+            color: #555;
+        }
