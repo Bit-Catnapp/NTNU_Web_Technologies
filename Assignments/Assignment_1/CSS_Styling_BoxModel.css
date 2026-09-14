@@ -1,0 +1,24 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Helvetica Neue', Helvetica, sans-serif;
+}
+
+#event-card {
+    background-color: #f0fdf4;
+    width: 450px;
+    padding: 25px;
+    margin: 60px auto;
+}
+
+.align-wrapper {
+    text-align: center;
+}
+
+.event-title {
+    color:#1e293b;
+    text-decoration: underline double #059669;
+}

@@ -1,0 +1,19 @@
+.hobby-table {
+    border: 1px solid black;
+    width: 50%;
+    border-collapse: collapse;
+}
+
+.hobby-table th {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.hobby-table td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+.h-spent {
+    text-align: center;
+}
