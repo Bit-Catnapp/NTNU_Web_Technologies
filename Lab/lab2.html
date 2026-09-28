@@ -4,9 +4,152 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lab2</title>
-        <p><i>Task1</i></p><hr>
+    
+    <style>
+        .Portal_Table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        .Portal_Table th, .Portal_Table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .Portal_Table tr:first-child {
+            background-color: grey;
+
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: white
+        }
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+}
+    </style>
 </head>
+
+<video autoplay muted loop playsinline id="bg-video">
+<source src="https://cdn.media.amplience.net/v/wizardsprod/WoW/mp4_720p/2023/09/21/1e7c5f8a-0b4d-4e9f-8c6b-2e5f1a2b3c4d.mp4" type="video/mp4">
+</video>
+
 <body>
+    <h1>Welcome to Groblobs Hut!</h1>
+    <p align="left">Hello Traveler! Welcome to our humble abode. Here i can teach you everything about the wonderfull world of DND!</p>
+
+    <h2>Groblob`s Tips and tricks for Class building!</h2>
+    <p align="left">This is my easiest tips for new travelers</p>
+
+    <h2>Here are some portals to planes which might teach you some more in detailed information!</h2>
+    <p align="left">I have made sure the portals are well-maintained and safe for travel.</p>
+        <table class="Portal_Table">
+            <tr>
+                <th>Portal</th>
+                <th>Link</th>
+            </tr>
+            <tr>
+                <td>DND Beyond</td>
+                <td><a href="https://www.dndbeyond.com/classes" target="_self">Enter Portal</a></td>
+            </tr>
+            <tr>
+                <td>RPG Bot</td>
+                <td><a href="https://rpgbot.net/" target="_blank">Enter Portal</a></td>
+            </tr>
+        </table>
+
+    <h2>These are all the classes playable for DND 5e</h2>
+    <p align="left">There may be added new classes in the future!</p>
+        <ul type="circle" compact>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/artificer" target="_blank"> Artificer
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/52994/751/420/618/638996058981193734.png" alt="Artificer" width="50" height="50">
+                </a> 
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/barbarian" target="_blank"> Barbarian
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/614/420/618/638607453019977939.png" alt="Barbarian" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/bard" target="_blank"> Bard
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/759/420/618/638607457242601819.png" alt="Bard" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/cleric" target="_blank"> Cleric
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/779/420/618/638607457550642172.png" alt="Cleric" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/druid" target="_blank"> Druid
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/797/420/618/638607457905913506.png" alt="Druid" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/fighter" target="_blank"> Fighter
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/812/420/618/638607458265993956.png" alt="Fighter" width="50" height="50">
+                </a>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/monk" target="_blank"> Monk
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/743/420/618/638607456914661514.png" alt="Monk" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/paladin" target="_blank"> Paladin
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/831/420/618/638607458603093196.png" alt="Paladin" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/ranger" target="_blank"> Ranger
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/840/420/618/638607458991513657.png" alt="Ranger" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/rogue" target="_blank"> Rogue
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/852/420/618/638607459371603812.png" alt="Rogue" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/sorcerer" target="_blank"> Sorcerer
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/869/420/618/638607459717652437.png" alt="Sorcerer" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/warlock" target="_blank"> Warlock
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/888/420/618/638607460047750778.png" alt="Warlock" width="50" height="50">
+                </a>
+            </li>
+            <li>
+                <a href="https://www.dndbeyond.com/classes/wizard" target="_blank"> Wizard
+                    <img align="center"src="https://www.dndbeyond.com/avatars/thumbnails/43940/901/420/618/638607460388570205.png" alt="Wizard" width="50" height="50">
+                </a>
+            </li>
+        </ul>
+
+    <h2>Here are my favourite picks!</h2>
+    <p align="left">I have played all the classes and these are my favourite picks!</p>
+        <ol type="1" start="1" compact>
+            <li>Warlock</li>
+            <li>Paladin</li>
+            <li>Fighter</li>
+        </ol>
+         <ol type="1" reversed="1" compact>
+            <li>Warlock</li>
+            <li>Paladin</li>
+            <li>Fighter</li>
+        </ol>
 
 </body>
 </html>
