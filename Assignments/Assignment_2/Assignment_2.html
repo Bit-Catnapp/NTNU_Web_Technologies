@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="eng">
+
+<body>
+    <h1>Asssigment 2</h1>
+    <p id="greet"></p>
+    <p id="uppercase"></p>
+    <p id="length"></p>
+    <p id="replace"></p>
+    <hr>
+    <p id="name"></p>
+    <p id="author"></p>
+    <p id="ISBN"></p>
+    <p id="Description"></p>
+    <p id="NewName"></p>
+    <p id="NewDescription"></p>
+
+    <script>
+        // Change the content of the Element
+        const Student_Obj = {
+            name: "Bob",
+            age: "20",
+            course: "PROG",
+
+            greet: function () {
+                return `Hello I am ${this.name}`;
+            }
+        };
+
+
+        const bob = Object.create(Student_Obj);
+
+        let studInfo = bob.greet();
+        document.getElementById("greet").innerHTML = studInfo;
+        document.getElementById("uppercase").innerHTML = studInfo.toUpperCase();
+        document.getElementById("length").innerHTML = studInfo.length;
+        document.getElementById("replace").innerHTML = studInfo.replace("Hello", "Greetings");
+
+        class Book {
+            constructor(name, author, ISBN) {
+                this.name = name;
+                this.author = author;
+                this.ISBN = ISBN;
+            }
+
+            get Description() {
+                console.log(`The book is called ${this.name} by ${this.author} and has ISBN: ${this.ISBN}.`);
+                return `The book is called ${this.name} by ${this.author} and has ISBN: ${this.ISBN}`;
+            }
+
+            set Name(name) {
+                const temp = this.name;
+                this.name = name;
+                console.log(`The book name changed from ${temp} to ${this.name}`);
+            }
+        }
+
+        const Harry_Potter = new Book("Harry Potter Order of the Pohenix", "J.K.Rowling", "978-0439358064");
+
+        let bookInfo = Harry_Potter.Description;
+        document.getElementById("name").innerHTML = Harry_Potter.name;
+        document.getElementById("author").innerHTML = Harry_Potter.author;
+        document.getElementById("ISBN").innerHTML = Harry_Potter.ISBN;
+        document.getElementById("Description").innerHTML = bookInfo;
+        document.getElementById("NewName").innerHTML = Name = "Noldus";
+
+
+
+
+    </script>
+</body>
+
+</html>

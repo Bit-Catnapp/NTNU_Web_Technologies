@@ -1,0 +1,242 @@
+Q1. JavaScript Syntax, Operators, and Loops
+------------------------------------------
+let total = 5;
+for (let j = 3; j <= 8; j++) {
+	if (j % 2 === 0) 
+	{
+		total += j;
+	} 
+	else 
+	{
+		total *= j;
+	}
+}
+1. What will be the final value of total after the code executes?
+Answer:
+  it:
+  	1: j = 3-->4, total = 5 * 3 = 15; 
+  	2: j = 4-->5, total = 15 + 4 = 19; 
+  	3: j = 5-->6, total = 19 * 5 = 95; 
+  	4: j = 6-->7, total = 95 + 6 = 101;
+  	5: j = 7-->8, total = 101 * 7 = 707;
+  	6: j = 8-->|, total = 707 + 8 = 715;
+
+2. What is the purpose of the condition j % 2 === 0 in this code?
+Answer: This condition uses modulo. It checks if the iteration-number is a even number.
+
+3. Rewrite the same logic using a while loop instead of a for loop.
+Answer: 
+
+let total = 5;
+let j = 3;
+
+while(j <= 8)
+{
+  	if (j % 2 === 0) 
+    {
+		total += j;
+	} 
+	else 
+	{
+		total *= j;
+	}
+    j++;
+}
+
+4. Explain in your own words how operators (+, *, %) are used in this example.
+Answer: 
+ + = Does an arhitmetical addition assuming the let-variables are numerical.
+ * = Does an arhitmetical multicpliation assuming the let-variables are numerical.
+ % = Does an arhitmetical modulo assuming the let-variables are numerical.
+
+ Q2. Arrays, Strings, and Classes
+------------------------------------------
+
+Part A – Strings and Arrays
+1. Convert the string ‘I am writing in Javascript!’ into an array.
+Answer: const text = "I am writing in Javascript!";
+ 		 const textArr = text.split('');
+
+1.1. Explain which JavaScript method is used and why.
+Answer: The method used is "string.split(seperator, limit)". This method takes a string a splits it based ont the spesified seperator given.
+An alterntive option is the use of method "Array.from()".
+
+2. Suppose this string was already stored as an array. How would you convert it back into a single string?
+Answer: To convert the arrayback to a string, i would ude the method "array.toString()".
+Would be: let info = textArr.toString();
+
+2.1. Explain the method used for joining array elements.
+Answer: The method used for joining arrays is "array.Join()" method. It worsk almost exactly like "array.toString()", but allows the user to sepsify the seperator.
+
+Part B – Constructor Function and Classes
+------------------------------------------
+Rewrite the following constructor function as a JavaScript class and ensure that the method describe is properly implemented as part of the class definition.
+Use different variable names if needed.
+ class Food {
+	 constructor(name, cookingTime){
+       this.name = name;
+	   this.cookingTime = cookingTime;
+	 }
+ 
+	 describe(){
+		console.log(`${this.name} is delicious and will take ${this.cookingTime} to finish cooking.`);
+	 }
+   }
+
+   const food1 = new Food('Pizza', '15 min');
+   food1.describe(); // Expected output: "Pizza is delicious and will take 15 min to finish cooking."
+
+Q3. Working with Objects and String Methods
+------------------------------------------
+Create an object named student with the following properties:
+• name, age, course, and a greet() method that returns “Hello, I am [name]”.
+Display the greeting inside the webpage using innerHTML.
+Create a string variable and use string methods to display different versions of the text:
+• .toUpperCase()
+• .length
+• .pop()
+• .replace()
+!Notice pop does not work in this instance
+
+JavaScript:
+......................
+const Student_Obj = {
+	name: "Bob",
+	age: "20",
+	course: "PROG",
+
+	greet_obj: function() {
+		return `Hello I am ${this.name}`;
+	}
+};
+
+const Bob = new Student('Bob','20','PROG');
+let studInfo = Bob.greet();
+studInfo.toUpperCase();
+studInfo.length();
+studInfo.pop();
+studInfo.replace("Hello I Am Ine");
+
+HTML:
+......................
+<!DOCTYPE html>
+<html lang="eng">
+
+<body>
+    <h1>Asssigment 2</h1>
+    <p id="greet"></p>
+    <p id="uppercase"></p>
+    <p id="length"></p>
+    <p id="replace"></p>
+    <script>
+        // Change the content of the Element
+      const Student_Obj = {
+	    name: "Bob",
+	    age: "20",
+	    course: "PROG",
+
+	    greet: function() {
+		    return `Hello I am ${this.name}`;
+	    }
+    };
+
+
+        const bob = Object.create(Student_Obj);
+
+        let studInfo = bob.greet();
+        document.getElementById("greet").innerHTML = studInfo;
+        document.getElementById("uppercase").innerHTML = studInfo.toUpperCase();
+        document.getElementById("length").innerHTML = studInfo.length;
+        document.getElementById("replace").innerHTML = studInfo.replace("Hello","Greetings");
+    </script>
+</body>
+</html>
+
+Q4. Conditional Operators
+------------------------------------------
+Ask the user to enter the current outdoor temperature in degrees and check whether it is hotter
+than, colder than, or exactly equal to a perfect target temperature value set in your code.
+Output the result to the user.
+
+function temperature(){
+	let idealTemp = 25;
+    let currentTemp = prompt("What is the current temperature?")
+	if(idealTemp > currentTemp)
+	{
+	 	console.log(`The current temperature is lower.`);
+	}
+	else if(idealTemp < currentTemp)
+	{
+		console.log(`The current temperature is greater.`);
+	}
+	else
+	{
+		console.log(`The current temperature is equal.`);
+	}
+}
+
+Q5. Classes, Promises
+------------------------------------------
+Define a JavaScript class named Book with:
+• Properties: name, author, ISBN
+• A getter that returns a description like “The book is called The Hunger Games by
+Suzanne Collins and has ISBN: 978-0-439-02352-8.”
+• A setter to change the name.
+Create a Promise that resolves after 3 seconds with a message "Data Loaded Successfully!".
+• Use then() and catch() to display the message in the console.
+Display the book description on the webpage once the Promise resolves.
+
+HTML
+...............................................
+    class Book {
+            constructor(name, author, ISBN) {
+                this.name = name;
+                this.author = author;
+                this.ISBN = ISBN;
+            }
+
+            get Description() {
+                console.log(`The book is called ${this.name} by ${this.author} and has ISBN: ${this.ISBN}.`);
+                return `The book is called ${this.name} by ${this.author} and has ISBN: ${this.ISBN}`;
+            }
+
+            set Name(name) {
+                const temp = this.name;
+                this.name = name;
+                console.log(`The book name changed from ${temp} to ${this.name}`);
+            }
+        }
+
+        const Harry_Potter = new Book("Harry Potter Order of the Pohenix", "J.K.Rowling", "978-0439358064");
+
+        let bookInfo = Harry_Potter.Description;
+        document.getElementById("name").innerHTML = Harry_Potter.name;
+        document.getElementById("author").innerHTML = Harry_Potter.author;
+        document.getElementById("ISBN").innerHTML = Harry_Potter.ISBN;
+        document.getElementById("Description").innerHTML = bookInfo;
+        document.getElementById("NewName").innerHTML = Name = "Noldus";
+
+
+Q6. DOM Traversal Practice (Nested Sections)
+------------------------------------------
+1. Represent the full DOM tree for this HTML, showing the hierarchy of elements and
+text/comment nodes.
+Answer:
+
+2. Explain the following DOM traversal operations:
+• Identify which element or node is being accessed.
+Answer:
+ parentNode: SECTION = 
+ childNodes: 7
+ firstElementChild: P
+ nextSibling: #text
+ nextElementSibling: P
+
+• Name the DOM traversal property used.
+Answer: nextElementSibling.
+
+• Explain how the property works and why it returns that result in this context.
+Answer: nextElementSibling skips both text and comment nodes. It only returns the next HTML elemtn,
+		The next element sibling after <p id="intro-text"> is <p id="nested-detail">.
+
+
