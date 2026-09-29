@@ -85,7 +85,7 @@ studInfo.replace("Hello I Am Ine");
 ///Create a function for temp with a user prompt and compare
 function temperature(){
 	let idealTemp = 25;
-    let currentTemp = prompt("What is the current temperature?")
+    let currentTemp = prompt("What is the current temperature?");
 	if(idealTemp > currentTemp)
 	{
 	 	console.log(`The current temperature is lower.`);

@@ -222,21 +222,119 @@ Q6. DOM Traversal Practice (Nested Sections)
 1. Represent the full DOM tree for this HTML, showing the hierarchy of elements and
 text/comment nodes.
 Answer:
+	document	
+	|--	html
+		|--	head
+		|	 |--meta	
+		|	 |--meta
+		|	 |--title
+		|	 	  |--text
+		|--	body
+			  |--section
+			  |		|--h2
+			  |     |   |--text
+			  |     |--section
+			  |     |   |--p
+			  |     |   |  |--text
+			  |     |   |--p
+			  |     |   |  |--text
+			  |     |   |--comment
+			  |     |   |--p
+			  |     |      |--text
+			  |     |--p  
+			  |--script      		  			  
 
 2. Explain the following DOM traversal operations:
 • Identify which element or node is being accessed.
+After using inspect in the HTML Web page, we can observe the output for the consol.log for the <p id="intro-text">;
 Answer:
- parentNode: SECTION = 
+ parentNode: SECTION
+	Explenation: This is the name of the parent node <section id="nested-section">. I have verified this by running console log for parentNode, but for id="Nested section", where the parent is id="main-section."
+
  childNodes: 7
- firstElementChild: P
+	Explenation: This console log displays the number of childNodes, which is 7. This includes all the elemenets in the section segment
+	 	<section id="nested-section">
+			1 Text 
+            2 <p id="intro-text">
+            3 Text
+            4 <!-- Comment node here -->
+			5 Text 
+			6 <p id="nested-detail">
+			7 Text 
+        </section>
+
+ firstElementChild (all HTML elmenets is an element node): P
+	Explenation: This console log displays the introText.parentNode.firstElementChild.nodeName, which is the first paragraph in the <section>-part.
+	More spesifically it is this line of text: (This is an introduction paragraph inside a nested section.) which is the firstElementChild.
+
  nextSibling: #text
+	Explenation: The console log displays the introText.nextSibling.nodeName as #text, and from child nodes we know the the reason for this via the DOM-tree architecture.
+	Therfore, the nextSibling is "comment" or simply text, which is the empty space between <p id="intro-text"> and <!-- Comment node here -->.
+	 Visual:
+	 		1<p id="intro-text">
+            2 Text("\n") //nextSibling
+            3 <!-- Comment node here -->
+
  nextElementSibling: P
+	Explenation: The console log displays the introText.nextElementSibling.nodeName as p, and is correct since the next element is <p id="nested-detail">.
 
 • Name the DOM traversal property used.
 Answer: nextElementSibling.
 
 • Explain how the property works and why it returns that result in this context.
-Answer: nextElementSibling skips both text and comment nodes. It only returns the next HTML elemtn,
+Answer: nextElementSibling skips both text and comment nodes. It only returns the next HTML element,
 		The next element sibling after <p id="intro-text"> is <p id="nested-detail">.
 
+Q7. Functions and Events
+------------------------------------------
+HTML
+...............................................
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Registration</title>
+</head>
+
+<body>
+    <h1>Course Registration</h1>
+    <label for="course">Enter a course name:</label>
+    <input type="text" id="course">
+    <button id="register-button">Register</button>
+    <p id="message"></p>
+    <script>
+        // Write your JavaScript here
+        let messageIn = document.getElementById("message");
+        let courseIn = document.getElementById("course");
+
+        function registerCourse() {
+          let info = document.getElementById("course").value;
+          if(info.trim() !== "")
+          {
+            messageIn.textContent = `You are registered for Course: ${info}`;
+          }
+          else
+          {
+             messageIn.textContent= "Please enter a course name";
+          }
+          courseIn.value = "";
+
+        };
+            document.getElementById("register-button").addEventListener("click", registerCourse);
+    </script>
+</body>
+</html>
+
+Explenation:
+• What the click event does.
+Answer: The click event simply reffers to the button id named "click". There is no inate click event. 
+
+• What the registerCourse() function does.
+Answer: The registerCourse() is a function which displays a message using an id from the current document.
+The funtion uses an if-check to verify if the input is not empty, and displays a message on the page accordingly. One for verified, and one for failure. 
+
+• Why addEventListener() is used.
+Answer: The addEventListener function is used since it enables a function to respond to a live change made  on the webpage, where the id of said action is the trigger.
+In this instance, the press of the button is the trigger.
