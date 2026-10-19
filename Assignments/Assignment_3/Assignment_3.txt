@@ -1,0 +1,133 @@
+NOTICE: html-tasks will only include relevant bits, where the total and final code will be placed at the end of this file.
+
+Task 1. Callbacks
+    1. Create a master text function that applies formatting rules based on different callback styles.
+    The Rules:
+        o Main function: formatText(str, callback)
+        o Callback 1: toShouting(str) (converts to uppercase with an exclamation mark).
+        o Callback 2: toSecret(str) (replaces vowels with asterisks *).
+Solution;
+HTML
+------------------
+ <h2>Task 1</h2>
+        <Script src="Assignment_3.js" tag="task1"></Script>
+        <button onclick="showResult('inputText1', toShouting)" size="auto">toShouting</button>
+        <input type="text" id="inputText1" placeholder="Enter text">
+        <br>
+        <button onclick="showResult('inputText2', toSecret)" size="auto">toSecret</button>
+        <input type="text" id="inputText2" placeholder="Enter text">
+JavaScript
+------------------
+///Main Function
+function formatTxt(str,callback)
+{
+    //Check if the input is a string
+    if (typeof str !== 'string') 
+    {
+        throw new Error('Input must be a string');
+    }
+    else
+    {
+        return callback(str);
+    }
+}
+
+///Callbacks
+function toShouting(str)
+{
+    //Check if the input is a string
+    if (typeof str !== 'string') 
+    {
+        throw new Error('Input must be a string');
+    }
+    else
+    {
+        return str.toUpperCase();
+    }
+}
+function toSecret(str)
+{
+    //Check if the input is a string
+    if (typeof str !== 'string') 
+    {
+        throw new Error('Input must be a string');
+    }
+    else
+    {
+        return str.replace(/[aeiou]/gi, '*');
+    }
+}
+
+//Helper
+function showResult(inputId, callback)
+{
+    //Retrieve id from input
+    const textInput = document.getElementById(inputId);
+
+    //Call the formatTxt function with the input and callback
+    const result = formatTxt(textInput.value, callback);
+    textInput.value = result;
+    alert(result);
+    
+    //Reset the input field to empty after displaying the result
+    document.getElementById(inputId).value = '';
+}
+
+2. The main function generates a random number between 1 and 10. The
+callback functions then perform a specific math action on that hidden number.
+    o Double that number
+    o Checking Even or Odd
+
+HTML
+------------------
+ <h2>Task 2</h2>
+        <Script src="Assignment_3_t1_2.js" tag="task2"></Script>
+        <button onclick="showResultNum(double)" size="auto">double</button>
+        <br>
+        <button onclick="showResultNum(even_or_odd)" size="auto">even_or_odd</button>
+
+JavaScript
+------------------
+//main function 
+function randomNum()
+{
+    return Math.floor(Math.random() * 10) + 1;
+};
+
+//callbacks
+function double(num)
+{
+    if (typeof num !== 'number') 
+    {
+        throw new Error('Input must be a number');
+    }
+    else
+    {
+        return num * 2;
+    }
+}
+
+function even_or_odd(num)
+{
+    if (typeof num !== 'number') 
+    {
+        throw new Error('Input must be a number');
+    }
+    else
+    {
+        //using ternary operator and modulo flag check if value is divisible by 2 or not
+        //If divisible by 2 then it is even else odd
+        return num % 2 === 0 ? 'even' : 'odd';
+    }
+}
+
+//Helper
+function showResultNum(callback)
+{
+    //Retrieve id from input
+    const randomNumber = randomNum();
+    const resultNum = callback(randomNumber);
+
+    alert("Number was : " + randomNumber + " and result is : " + resultNum);
+}
+
