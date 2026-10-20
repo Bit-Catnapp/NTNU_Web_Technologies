@@ -6,11 +6,11 @@ function sendCampaign(campaignName, callback) {
 
     // Display the status of the campaign
     document.getElementById("status").innerHTML =
-        "Initiating transmission sequence for: " + campaignName + "<br>";
+        `Initiating transmission sequence for: ${campaignName}<br>`;
 
     // Countdown timer for sending the campaign
     document.getElementById("timer").innerHTML =
-        "Sending in " + seconds + "...";
+        `Sending in ${seconds}...`;
 
     // Start the countdown timer and call the countdownCallback function every second
         countdown = setInterval(() => {
@@ -27,7 +27,7 @@ function countdownCallback(campaignName, callback, seconds, countdown) {
     // If there are still seconds left, update the timer display
     if (seconds > 0) {
         document.getElementById("timer").innerHTML =
-            "\nSending in " + seconds + "...";
+            `Sending in ${seconds}...`;
     }
     else {
         // If the countdown has reached zero, clear the interval and call the callback function
@@ -39,16 +39,13 @@ function countdownCallback(campaignName, callback, seconds, countdown) {
         document.getElementById("status").innerHTML = "";
         document.getElementById("timer").innerHTML = "";
     }
-
-    // Return the remaining seconds for testing purposes
-    return seconds;
 }
 
 function generateReport(campaignName) {
     // Display the result after the campaign is sent
     document.getElementById('result').innerHTML = 
-        "Performance analytics report compiled and updated on dashboard.<br>" +
-        "Emails delivered successfully to: " + campaignName;
+        `Performance analytics report compiled and updated on dashboard.<br>` +
+        `Emails delivered successfully to: ${campaignName}`;
 
     // Clear the result after 3 seconds
     setTimeout(() => {
