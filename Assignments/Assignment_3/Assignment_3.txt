@@ -372,3 +372,81 @@ function showResultDiceRoll() {
     document.getElementById("diceRolls").innerHTML = `Dice Roll: ${randomNumber}<br>${element}`;
 };
 ------------------|
+
+    6. Check whether a shopping cart coupon code is valid and calculate the
+    discount if it meets the conditions. Consider the following steps:
+    Step 1: Initialize a new Promise object and assign it to a constant variable
+    named validateCoupon.
+    Step 2: Inside the execution block of the promise, check a static
+    shoppingCart data object containing a coupon string, an expiration status,
+    and a base checkout price.
+    Step 3: Set up the validation conditions:
+    o If the coupon code does not match "SAVE15", trigger the failure state
+    by calling reject() with an invalid code error message.
+    o If the coupon code is correct but the expiration status is true, trigger
+    the failure state by calling reject() with an expired code error
+    message.
+    o If the coupon code matches "SAVE15" and is not expired, calculate a
+    15% savings deduction and trigger the fulfillment state by calling
+    resolve() with a success message showing the final price.
+    Step 4: Properly chain the .then(), .catch(), and .finally() block
+    handlers to process the respective outcomes, log the resulting strings to the
+    console, and log a permanent "Session sync complete." execution
+    message when settled.
+
+html
+------------------|
+<h3>3.2 Cart Coupon</h3>
+        <Script src="Assignment_3_t3_2.js" tag="task3.2"></Script>
+        <button onclick="showNewPrice()">New price</button>
+        <div id="discount"></div>
+ ------------------|
+
+ JavaScript
+ ------------------|
+//Main
+const validateCoupon = new Promise((resolve, reject) => {
+    const shoppingCart = {
+        coupon: "SAVE15",
+        expired: false,
+        price: 300
+    }
+
+    // Promise chaining
+    if (shoppingCart.coupon !== "SAVE15") {
+        reject("Coupon does not match");
+
+    }
+    else if (shoppingCart.expired === true) {
+        reject("Expired Code");
+
+    }
+    else {
+        resolve(shoppingCart);
+    }
+});
+
+// showResult function
+function showNewPrice() {
+
+    //Handle the promise and log the result to the console
+    validateCoupon
+        // Output new price if promise was successfull
+        .then((shoppingCart) => {
+            const newPrice = shoppingCart.price * 0.85;
+            const diff = shoppingCart.price - newPrice;
+
+            //Update the element variable and display the result in the HTML
+            document.getElementById("discount").innerHTML =
+                `Success!<br>
+                 Coupon was: ${shoppingCart.coupon}<br>
+                 Original price was: ${shoppingCart.price}<br> 
+                 You saved: ${diff}<br> 
+                 New price is: ${newPrice}<br>
+                 Session sync complete...`;
+        })
+        .catch((error) => {
+            document.getElementById("discount").innerHTML = error
+        });
+};
+ ------------------|   
