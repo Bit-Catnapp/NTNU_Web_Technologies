@@ -8,18 +8,36 @@
 <body>
     <h1>Assignment 3</h1>
     <h2>Task 1</h2>
-        <Script src="Assignment_3_t1_1.js" tag="task1"></Script>
-        <button onclick="showResultTxt('inputText1', toShouting)" size="auto">toShouting</button>
+        <h3>1.1 Text Manipulation</h3>
+        <Script src="Assignment_3_t1_1.js" tag="task1.1"></Script>
+        <button onclick="showResultTxt('inputText1', toShouting)">toShouting</button>
         <input type="text" id="inputText1" placeholder="Enter text">
         <br>
-        <button onclick="showResultTxt('inputText2', toSecret)" size="auto">toSecret</button>
+        <button onclick="showResultTxt('inputText2', toSecret)">toSecret</button>
         <input type="text" id="inputText2" placeholder="Enter text">
-    <hr>
-    <h2>Task 2</h2>
-        <Script src="Assignment_3_t1_2.js" tag="task2"></Script>
-        <button onclick="showResultNum(double)" size="auto">double</button>
+    <br>
+        <h3>1.2 Number Manipulation</h3>
+        <Script src="Assignment_3_t1_2.js" tag="task1.2"></Script>
+        <button onclick="showResultNum(double)">double</button>
         <br>
-        <button onclick="showResultNum(even_or_odd)" size="auto">even_or_odd</button>
+        <button onclick="showResultNum(even_or_odd)">even_or_odd</button>
+    <br>
+        <h2>Task 2</h2>
+        <h3>2.1 Campaign Management</h3>
+        <Script src="Assignment_3_t2_1.js" tag="task2.1"></Script>
+        <button onclick="showResultCampaign('campaignName')">Send Campaign</button>
+        <input type="text" id="campaignName" placeholder="Enter campaign name">
+        <div id="status"></div>
+        <div id="timer"></div>
+        <div id="result"></div>
+        <br>
+        <h3>2.2 Complex Mathematics</h3>
+        <Script src="Assignment_3_t2_2.js" tag="task2.2"></Script>
+        <button onclick="showResultCalculation('inputNumber')">Calculate Factorial</button>
+        <input type="number" id="inputNumber" placeholder="Enter a number">
+        <div id="statusCalc"></div>
+        <div id="timerCalc"></div>
+        <div id="resultCalc"></div>
 
 </body>
 </html>
