@@ -1,14 +1,3 @@
-///Main Function
-function formatTxt(str, callback) {
-    //Check if the input is a string
-    if (typeof str !== 'string') {
-        throw new Error('Input must be a string');
-    }
-    else {
-        return callback(str);
-    }
-}
-
 ///Callbacks
 function toShouting(str) {
     //Check if the input is a string
@@ -29,16 +18,23 @@ function toSecret(str) {
     }
 }
 
-//Helper
-function showResultTxt(inputId, callback) {
-    //Retrieve id from input
-    const textInput = document.getElementById(inputId);
+///Main Function
+function formatTxt(inputId, callback) {
 
-    //Call the formatTxt function with the input and callback
-    const result = formatTxt(textInput.value, callback);
-    textInput.value = result;
-    alert(result);
+    // Retrieve string from inputID
+    const textInput = document.getElementById(inputId).value;
 
-    //Reset the input field to empty after displaying the result
-    document.getElementById(inputId).value = '';
+    //Check if the input is a string
+    if (typeof textInput !== 'string') {
+        throw new Error('Input must be a string');
+    }
+    else {
+        //Call the formatTxt function with the input and callback
+        const result = callback(textInput);
+        textInput.value = result;
+        alert(result);
+
+        //Reset the input field to empty after displaying the result
+        document.getElementById(inputId).value = '';
+    }
 }

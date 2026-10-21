@@ -1,39 +1,48 @@
-//Global variable to store the element
-let element = "";
-let randomNumber = Math.floor(Math.random() * 6) + 1;
-
-//Main
-//Promise to simulate a dice roll
-const diceRoll = new Promise((resolve, reject) => {
-
-    //Simulate a dice roll
-    const localRandomNumber = randomNumber;
-
-    //Check if the roll is high or low
-    if (localRandomNumber > 3) {
-        resolve("High Roll You Win!");
-    }
-    else {
-        reject("Low Roll You lose!");
-    }
-});
-
-//Helper function
-//Handle the promise and update the element variable
-diceRoll
-    .then((result) => { element = result; })
-    .catch((error) => { element = error; })
-    .finally(() => { element += "<br>Dice Roll Complete"; });
-
 //showResult function
-function showResultDiceRoll() {
+function PlayDiceRoll() {
+    // Local variables
+    let displayID = document.getElementById("diceRolls");
+    const localRandomNumber = Math.floor(Math.random() * 6) + 1;
+
+    //Simulate dice roll
+    const diceRoll = new Promise((resolve, reject) => {
+
+        //Check if the roll is high or low
+        if (localRandomNumber > 3) {
+            resolve(`Rolled ${localRandomNumber}: High roll! You win.`);
+        }
+        else {
+            reject(`Rolled ${localRandomNumber}: Low roll! You lose.`);
+        }
+    });
 
     //Handle the promise and log the result to the console
     diceRoll
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error))
-        .finally(() => console.log("Dice Roll Complete"));
+        .then((result) => displayID.innerHTML = `Dice Roll: ${localRandomNumber}<br>${result}`)
+        .catch((error) => displayID.innerHTML = `Dice Roll: ${localRandomNumber}<br>${error}`)
+        .finally(() => {
 
-    //Update the element variable and display the result in the HTML
-    document.getElementById("diceRolls").innerHTML = `Dice Roll: ${randomNumber}<br>${element}`;
+            // Display message for timer
+            const resetMessage = displayID.innerHTML;
+            let timer = 3;
+
+            //Display Interval for resetting
+            const countdown = setInterval(() => {
+
+                //Updating resetMessage
+                displayID.innerHTML =
+                    `${resetMessage}<br>Dice Roll Complete<br>Resetting in ${timer}...`;
+
+                //de-incrementing timer
+                timer--;
+
+                //if timer is less than 0, clear timer and reset
+                if (timer < 0) {
+                    clearInterval(countdown);
+                    displayID.innerHTML = "";
+                }
+
+            }, 1000);
+        });
 };
+

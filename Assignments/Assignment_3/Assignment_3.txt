@@ -9,29 +9,16 @@ Task 1. Callbacks
 Solution;
 HTML
 ------------------|
-<h2>Task 1</h2>
-        <h3>1.1 Text Manipulation</h3>
-        <Script src="Assignment_3_t1_1.js" tag="task1"></Script>
-        <button onclick="showResultTxt('inputText1', toShouting)" size="auto">toShouting</button>
+<h3>1.1 Text Manipulation</h3>
+        <Script src="Assignment_3_t1_1.js" tag="task1.1"></Script>
+        <button onclick="formatTxt('inputText1', toShouting)">toShouting</button>
         <input type="text" id="inputText1" placeholder="Enter text">
         <br>
-        <button onclick="showResultTxt('inputText2', toSecret)" size="auto">toSecret</button>
+        <button onclick="formatTxt('inputText2', toSecret)">toSecret</button>
         <input type="text" id="inputText2" placeholder="Enter text">
 ------------------|
-
 JavaScript
 ------------------|
-///Main Function
-function formatTxt(str, callback) {
-    //Check if the input is a string
-    if (typeof str !== 'string') {
-        throw new Error('Input must be a string');
-    }
-    else {
-        return callback(str);
-    }
-}
-
 ///Callbacks
 function toShouting(str) {
     //Check if the input is a string
@@ -52,18 +39,25 @@ function toSecret(str) {
     }
 }
 
-//Helper
-function showResultTxt(inputId, callback) {
-    //Retrieve id from input
-    const textInput = document.getElementById(inputId);
+///Main Function
+function formatTxt(inputId, callback) {
 
-    //Call the formatTxt function with the input and callback
-    const result = formatTxt(textInput.value, callback);
-    textInput.value = result;
-    alert(result);
+    // Retrieve string from inputID
+    const textInput = document.getElementById(inputId).value;
 
-    //Reset the input field to empty after displaying the result
-    document.getElementById(inputId).value = '';
+    //Check if the input is a string
+    if (typeof textInput !== 'string') {
+        throw new Error('Input must be a string');
+    }
+    else {
+        //Call the formatTxt function with the input and callback
+        const result = callback(textInput);
+        textInput.value = result;
+        alert(result);
+
+        //Reset the input field to empty after displaying the result
+        document.getElementById(inputId).value = '';
+    }
 }
 ------------------|
 
@@ -75,19 +69,13 @@ function showResultTxt(inputId, callback) {
 HTML
 ------------------|
 <h3>1.2 Number Manipulation</h3>
-        <Script src="Assignment_3_t1_2.js" tag="task2"></Script>
-        <button onclick="showResultNum(double)" size="auto">double</button>
+        <Script src="Assignment_3_t1_2.js" tag="task1.2"></Script>
+        <button onclick="randomNum(double)">double</button>
         <br>
-        <button onclick="showResultNum(even_or_odd)" size="auto">even_or_odd</button>
+        <button onclick="randomNum(even_or_odd)">even_or_odd</button>
 ------------------|
-
 JavaScript
 ------------------|
-//main function 
-function randomNum() {
-    return Math.floor(Math.random() * 10) + 1;
-};
-
 //callbacks
 function double(num) {
     if (typeof num !== 'number') {
@@ -109,14 +97,14 @@ function even_or_odd(num) {
     }
 }
 
-//Helper
-function showResultNum(callback) {
+//main function 
+function randomNum(callback) {
     //Retrieve id from input
-    const randomNumber = randomNum();
+    const randomNumber = Math.floor(Math.random() * 10) + 1;;
     const resultNum = callback(randomNumber);
 
     alert("Number was : " + randomNumber + " and result is : " + resultNum);
-}
+};
 ------------------|
 
 /////////////////////////////////////////////////////////////////////////
@@ -133,38 +121,16 @@ Task 2. setTimeout
 html
 ------------------|
 <h2>Task 2</h2>
-<h3>2.1 Campaign Management</h3>
-<Script src="Assignment_3_t2_1.js" tag="task2"></Script>
-<button onclick="showResultCampaign('campaignName')" size="auto">Send Campaign</button>
-<input type="text" id="campaignName" placeholder="Enter campaign name">
-<element id="status"></element>
-<element id="timer"></element>
-<element id="result"></element>
+        <h3>2.1 Campaign Management</h3>
+        <Script src="Assignment_3_t2_1.js" tag="task2.1"></Script>
+        <button onclick="sendCampaign('campaignName')">Send Campaign</button>
+        <input type="text" id="campaignName" placeholder="Enter campaign name">
+        <div id="status"></div>
+        <div id="timer"></div>
+        <div id="result"></div>
 ------------------|
-
 JavaScript
 ------------------|
-//Main function
-function sendCampaign(campaignName, callback) {
-    // Local variables 
-    let seconds = 3;
-    let countdown;
-
-    // Display the status of the campaign
-    document.getElementById("status").innerHTML =
-        `Initiating transmission sequence for: ${campaignName}<br>`;
-
-    // Countdown timer for sending the campaign
-    document.getElementById("timer").innerHTML =
-        `Sending in ${seconds}...`;
-
-    // Start the countdown timer and call the countdownCallback function every second
-        countdown = setInterval(() => {
-            // Call the countdownCallback function and update the seconds variable
-            seconds = countdownCallback(campaignName, callback, seconds, countdown);
-        }, 1000);
-}
-
 //Callbacks
 function countdownCallback(campaignName, callback, seconds, countdown) {
     // Decrement the seconds and update the timer display
@@ -189,27 +155,41 @@ function countdownCallback(campaignName, callback, seconds, countdown) {
 
 function generateReport(campaignName) {
     // Display the result after the campaign is sent
-    document.getElementById('result').innerHTML = 
+    document.getElementById('result').innerHTML =
         `Performance analytics report compiled and updated on dashboard.<br>` +
         `Emails delivered successfully to: ${campaignName}`;
 
     // Clear the result after 3 seconds
     setTimeout(() => {
         document.getElementById('result').innerHTML = "";
-    }, 3000);           
+    }, 3000);
 }
 
-//Show result
-function showResultCampaign(campaignNameID) {
-    // Get the campaign name from the input field
+//Main function
+function sendCampaign(campaignNameID) {
+    // Local variables 
     const campaignName = document.getElementById(campaignNameID).value;
-    sendCampaign(campaignName, generateReport);
+    let seconds = 3;
+    let countdown;
+
+    // Display the status of the campaign
+    document.getElementById("status").innerHTML =
+        `Initiating transmission sequence for: ${campaignName}<br>`;
+
+    // Countdown timer for sending the campaign
+    document.getElementById("timer").innerHTML =
+        `Sending in ${seconds}...`;
+
+    // Start the countdown timer and call the countdownCallback function every second
+    countdown = setInterval(() => {
+        // Call the countdownCallback function and update the seconds variable
+        seconds = countdownCallback(campaignName, generateReport, seconds, countdown);
+    }, 1000);
 
     // Clear the input field after sending the campaign
     document.getElementById(campaignNameID).value = "";
 }
 ------------------|
-
     4. Create a system that simulates a complex mathematical calculation by writing
     a main function called calculateFactorial(number, callback) that logs "Initiating
     factorial calculation for [number]...", uses setTimeout to simulate a 1.5-second
@@ -223,38 +203,14 @@ html
 ------------------|
 <h3>2.2 Complex Mathematics</h3>
         <Script src="Assignment_3_t2_2.js" tag="task2.2"></Script>
-        <button onclick="showResultCalculation('inputNumber')">Calculate Factorial</button>
+        <button onclick="calculateFactorial('inputNumber')">Calculate Factorial</button>
         <input type="number" id="inputNumber" placeholder="Enter a number">
         <div id="statusCalc"></div>
         <div id="timerCalc"></div>
         <div id="resultCalc"></div>
 ------------------|
-
 JavaScript
 ------------------|
-//Main function
-function calculateFactorial(number, callback) {
-    let seconds = 3;
-    let countdown;
-
-    document.getElementById("statusCalc").innerHTML =
-        `Initializing factorial calculation for: ${number}<br>`;
-
-    // Countdown timer for sending the campaign
-    document.getElementById("timerCalc").innerHTML =
-        `Sending in ${seconds}...`;
-    
-    //Calculate factorial
-    const fact_num = factorial(number);
-
-    // Start the countdown timer and call the countdownCallback function every second
-    countdown = setInterval(() => {
-       
-        // Call the countdownCallback function and update the seconds variable
-        seconds = countdownCallbackCalc(fact_num, callback, seconds, countdown);
-    }, 1000);
-}
-
 //Callbacks
 function countdownCallbackCalc(number, callback, seconds, countdown) {
     // Decrement the seconds and update the timer display
@@ -263,7 +219,7 @@ function countdownCallbackCalc(number, callback, seconds, countdown) {
     // If there are still seconds left, update the timer display
     if (seconds > 0) {
         document.getElementById("timerCalc").innerHTML =
-            `\nSending in ${seconds}...`;
+            `\nCalculation time is: ${seconds}...`;
     }
     else {
         // If the countdown has reached zero, clear the interval and call the callback function
@@ -279,19 +235,19 @@ function countdownCallbackCalc(number, callback, seconds, countdown) {
 
 function displayResult(number) {
     // Display the result after the campaign is sent
-    document.getElementById('resultCalc').innerHTML = 
+    document.getElementById('resultCalc').innerHTML =
         `Calculation complete.<br>` +
         `The final computed result is: ${number}`;
 
     // Clear the result after 3 seconds
     setTimeout(() => {
         document.getElementById('resultCalc').innerHTML = "";
-    }, 1500);           
+    }, 3000);
 }
 
 function factorial(n) {
     // Handle negative numbers
-    if (n < 0) return "Error: Factorial is not defined for negative numbers."; 
+    if (n < 0) return "Error: Factorial is not defined for negative numbers.";
     // Base case: factorial of 0 is 1
     if (n === 0) return 1;
 
@@ -299,15 +255,34 @@ function factorial(n) {
     return n * factorial(n - 1);
 }
 
-//Show result
-function showResultCalculation(inputID) {
+//Main function
+function calculateFactorial(inputID) {
     // Get the number from the input field
     const number = document.getElementById(inputID).value;
-    calculateFactorial(number, displayResult);
+    let seconds = 1.5;
+    let countdown;
+
+    document.getElementById("statusCalc").innerHTML =
+        `Initializing factorial calculation for: ${number}<br>`;
+
+    // Countdown timer for sending the campaign
+    document.getElementById("timerCalc").innerHTML =
+        `Result ready in ${seconds}...`;
+
+    //Calculate factorial
+    const fact_num = factorial(number);
+
+    // Start the countdown timer and call the countdownCallback function every second
+    countdown = setInterval(() => {
+
+        // Call the countdownCallback function and update the seconds variable
+        seconds = countdownCallbackCalc(fact_num, displayResult, seconds, countdown);
+    }, 1000);
 
     // Clear the input field after calculating the factorial    
     document.getElementById(inputID).value = "";
 }
+
 ------------------|
 
 /////////////////////////////////////////////////////////////////////////
@@ -323,123 +298,137 @@ Task 3. Promise
 
 html
 ------------------|
-<h2>Task 3</h2>
-        <h3>3.1 Dice Roller</h3>
+<h3>3.1 Dice Roller</h3>
         <Script src="Assignment_3_t3_1.js" tag="task3.1"></Script>
-        <button onclick="showResultDiceRoll()">Roll Dice</button>
+        <button onclick="PlayDiceRoll()">Roll Dice</button>
         <div id="diceRolls"></div>
 ------------------|
 
 JavaScript
 ------------------|
-//Global variable to store the element
-let element = "";
-let randomNumber = Math.floor(Math.random() * 6) + 1;
-
-//Main
-//Promise to simulate a dice roll
-const diceRoll = new Promise((resolve, reject) => {
-
-    //Simulate a dice roll
-    const localRandomNumber = randomNumber;
-
-    //Check if the roll is high or low
-    if (localRandomNumber > 3) {
-        resolve("High Roll You Win!");
-    }
-    else {
-        reject("Low Roll You lose!");
-    }
-});
-
-//Helper function
-//Handle the promise and update the element variable
-diceRoll
-    .then((result) => { element = result; })
-    .catch((error) => { element = error; })
-    .finally(() => { element += "<br>Dice Roll Complete"; });
-
 //showResult function
-function showResultDiceRoll() {
+function PlayDiceRoll() {
+    // Local variables
+    let displayID = document.getElementById("diceRolls");
+    const localRandomNumber = Math.floor(Math.random() * 6) + 1;
+
+    //Simulate dice roll
+    const diceRoll = new Promise((resolve, reject) => {
+
+        //Check if the roll is high or low
+        if (localRandomNumber > 3) {
+            resolve(`Rolled ${localRandomNumber}: High roll! You win.`);
+        }
+        else {
+            reject(`Rolled ${localRandomNumber}: Low roll! You lose.`);
+        }
+    });
 
     //Handle the promise and log the result to the console
     diceRoll
-        .then((result) => console.log(result))
-        .catch((error) => console.error(error))
-        .finally(() => console.log("Dice Roll Complete"));
+        .then((result) => displayID.innerHTML = `Dice Roll: ${localRandomNumber}<br>${result}`)
+        .catch((error) => displayID.innerHTML = `Dice Roll: ${localRandomNumber}<br>${error}`)
+        .finally(() => {
 
-    //Update the element variable and display the result in the HTML
-    document.getElementById("diceRolls").innerHTML = `Dice Roll: ${randomNumber}<br>${element}`;
+            // Display message for timer
+            const resetMessage = displayID.innerHTML;
+            let timer = 3;
+
+            //Display Interval for resetting
+            const countdown = setInterval(() => {
+
+                //Updating resetMessage
+                displayID.innerHTML =
+                    `${resetMessage}<br>Dice Roll Complete<br>Resetting in ${timer}...`;
+
+                //de-incrementing timer
+                timer--;
+
+                //if timer is less than 0, clear timer and reset
+                if (timer < 0) {
+                    clearInterval(countdown);
+                    displayID.innerHTML = "";
+                }
+
+            }, 1000);
+        });
 };
 ------------------|
 
     6. Check whether a shopping cart coupon code is valid and calculate the
     discount if it meets the conditions. Consider the following steps:
-    Step 1: Initialize a new Promise object and assign it to a constant variable
-    named validateCoupon.
-    Step 2: Inside the execution block of the promise, check a static
-    shoppingCart data object containing a coupon string, an expiration status,
-    and a base checkout price.
-    Step 3: Set up the validation conditions:
-    o If the coupon code does not match "SAVE15", trigger the failure state
-    by calling reject() with an invalid code error message.
-    o If the coupon code is correct but the expiration status is true, trigger
-    the failure state by calling reject() with an expired code error
-    message.
-    o If the coupon code matches "SAVE15" and is not expired, calculate a
-    15% savings deduction and trigger the fulfillment state by calling
-    resolve() with a success message showing the final price.
-    Step 4: Properly chain the .then(), .catch(), and .finally() block
-    handlers to process the respective outcomes, log the resulting strings to the
-    console, and log a permanent "Session sync complete." execution
-    message when settled.
+        Step 1: Initialize a new Promise object and assign it to a constant variable
+        named validateCoupon.
+        Step 2: Inside the execution block of the promise, check a static
+        shoppingCart data object containing a coupon string, an expiration status,
+        and a base checkout price.
+        Step 3: Set up the validation conditions:
+        o If the coupon code does not match "SAVE15", trigger the failure state
+        by calling reject() with an invalid code error message.
+        o If the coupon code is correct but the expiration status is true, trigger
+        the failure state by calling reject() with an expired code error
+        message.
+        o If the coupon code matches "SAVE15" and is not expired, calculate a
+        15% savings deduction and trigger the fulfillment state by calling
+        resolve() with a success message showing the final price.
+        Step 4: Properly chain the .then(), .catch(), and .finally() block
+        handlers to process the respective outcomes, log the resulting strings to the
+        console, and log a permanent "Session sync complete." execution
+        message when settled.
 
 html
 ------------------|
 <h3>3.2 Cart Coupon</h3>
         <Script src="Assignment_3_t3_2.js" tag="task3.2"></Script>
-        <button onclick="showNewPrice()">New price</button>
+        <button onclick="playShopping()">New price</button>
+        <form id="shoppingCartForm">
+            <input type="number" id="coupon" placeholder="Enter coupon dicsount" required>
+            <input type="checkbox" id="expired" placeholder="Is it expired?">
+            <input type="number" id="original_price" placeholder="Enter original price" required>
+        </form>
         <div id="discount"></div>
  ------------------|
 
  JavaScript
  ------------------|
-//Main
-const validateCoupon = new Promise((resolve, reject) => {
-    const shoppingCart = {
-        coupon: "SAVE15",
-        expired: false,
-        price: 300
-    }
-
-    // Promise chaining
-    if (shoppingCart.coupon !== "SAVE15") {
-        reject("Coupon does not match");
-
-    }
-    else if (shoppingCart.expired === true) {
-        reject("Expired Code");
-
-    }
-    else {
-        resolve(shoppingCart);
-    }
-});
-
 // showResult function
-function showNewPrice() {
+function playShopping() {
+    // Shoppingcart object
+    const shoppingCart = {
+        coupon: document.getElementById("coupon").value,
+        expired: document.getElementById("expired").checked,
+        price: document.getElementById("original_price").value
+    };
+
+    // Promise
+    const validateCoupon = new Promise((resolve, reject) => {
+
+        // Promise chaining
+        if (shoppingCart.coupon < 0) {
+            reject("Coupon value illegal");
+
+        }
+        else if (shoppingCart.expired) {
+            reject("Expired Code");
+
+        }
+        else {
+            resolve(shoppingCart);
+        }
+    });
 
     //Handle the promise and log the result to the console
     validateCoupon
         // Output new price if promise was successfull
         .then((shoppingCart) => {
-            const newPrice = shoppingCart.price * 0.85;
+            const newPrice = shoppingCart.price * (1 - shoppingCart.coupon / 100);
             const diff = shoppingCart.price - newPrice;
 
             //Update the element variable and display the result in the HTML
             document.getElementById("discount").innerHTML =
                 `Success!<br>
-                 Coupon was: ${shoppingCart.coupon}<br>
+                 Coupon discount was: ${shoppingCart.coupon}<br>
+                 Not expired: ${shoppingCart.expired}<br>
                  Original price was: ${shoppingCart.price}<br> 
                  You saved: ${diff}<br> 
                  New price is: ${newPrice}<br>
@@ -447,6 +436,40 @@ function showNewPrice() {
         })
         .catch((error) => {
             document.getElementById("discount").innerHTML = error
+        })
+        .finally(() => {
+            //Display Timer
+            setTimeout(() => {
+                document.getElementById("shoppingCartForm").reset();
+                document.getElementById("discount").innerHTML = "";
+            }, 3000); // 1000 ms = 1 second
         });
 };
+ ------------------|   
+
+/////////////////////////////////////////////////////////////////////////
+Task 4. Async/await
+    7. Create an Inventory Check System by considering the following steps:
+        Step 1: Write an async function called checkStockLevel() that simply returns
+        a numerical stock count (for example, 45).
+        Step 2: Write an async function called isWarehouseOpen() that simply returns
+        a boolean value (true or false).
+        Step 3: Write a main async function called processItem(itemName) that
+        accepts a string parameter and handles the following evaluation rules:
+        1. Await the boolean value from isWarehouseOpen(). If it is false, print
+        an operation aborted message and stop.
+        2. If it is true, print a warehouse open message, then await the numerical
+        value from checkStockLevel().
+        3. Add a buffer of 10 items to that stock count and log a personalized
+        tracking message containing the itemName and total calculation.
+        Step 4: Execute the system by calling your main function and passing a string
+        argument (for example, "Laptop").
+
+html
+ ------------------|   
+
+ ------------------|   
+JavaScript
+ ------------------|   
+ 
  ------------------|   

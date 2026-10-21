@@ -10,23 +10,23 @@
     <h2>Task 1</h2>
         <h3>1.1 Text Manipulation</h3>
         <Script src="Assignment_3_t1_1.js" tag="task1.1"></Script>
-        <button onclick="showResultTxt('inputText1', toShouting)">toShouting</button>
+        <button onclick="formatTxt('inputText1', toShouting)">toShouting</button>
         <input type="text" id="inputText1" placeholder="Enter text">
         <br>
-        <button onclick="showResultTxt('inputText2', toSecret)">toSecret</button>
+        <button onclick="formatTxt('inputText2', toSecret)">toSecret</button>
         <input type="text" id="inputText2" placeholder="Enter text">
     <br>
         <h3>1.2 Number Manipulation</h3>
         <Script src="Assignment_3_t1_2.js" tag="task1.2"></Script>
-        <button onclick="showResultNum(double)">double</button>
+        <button onclick="randomNum(double)">double</button>
         <br>
-        <button onclick="showResultNum(even_or_odd)">even_or_odd</button>
+        <button onclick="randomNum(even_or_odd)">even_or_odd</button>
     <br>
     <hr>
         <h2>Task 2</h2>
         <h3>2.1 Campaign Management</h3>
         <Script src="Assignment_3_t2_1.js" tag="task2.1"></Script>
-        <button onclick="showResultCampaign('campaignName')">Send Campaign</button>
+        <button onclick="sendCampaign('campaignName')">Send Campaign</button>
         <input type="text" id="campaignName" placeholder="Enter campaign name">
         <div id="status"></div>
         <div id="timer"></div>
@@ -34,26 +34,31 @@
         <br>
         <h3>2.2 Complex Mathematics</h3>
         <Script src="Assignment_3_t2_2.js" tag="task2.2"></Script>
-        <button onclick="showResultCalculation('inputNumber')">Calculate Factorial</button>
+        <button onclick="calculateFactorial('inputNumber')">Calculate Factorial</button>
         <input type="number" id="inputNumber" placeholder="Enter a number">
         <div id="statusCalc"></div>
         <div id="timerCalc"></div>
         <div id="resultCalc"></div>
      <br>
      <hr>
-     <h2>Task 3</h2>
+        <h2>Task 3</h2>
         <h3>3.1 Dice Roller</h3>
         <Script src="Assignment_3_t3_1.js" tag="task3.1"></Script>
-        <button onclick="showResultDiceRoll()">Roll Dice</button>
+        <button onclick="PlayDiceRoll()">Roll Dice</button>
         <div id="diceRolls"></div>
     <br>
         <h3>3.2 Cart Coupon</h3>
         <Script src="Assignment_3_t3_2.js" tag="task3.2"></Script>
-        <button onclick="showNewPrice()">New price</button>
+        <button onclick="playShopping()">New price</button>
+        <form id="shoppingCartForm">
+            <input type="number" id="coupon" placeholder="Enter coupon dicsount" required>
+            <input type="checkbox" id="expired" placeholder="Is it expired?">
+            <input type="number" id="original_price" placeholder="Enter original price" required>
+        </form>
         <div id="discount"></div>
     <br>
-    <h2>Task 4</h2>
-        <h3>4.1 Async awai</h3>
+        <h2>Task 4</h2>
+        <h3>4.1 Async/await</h3>
         <Script src="Assignment_3_t4_1.js" tag="task4.1"></Script>
 
     </body>

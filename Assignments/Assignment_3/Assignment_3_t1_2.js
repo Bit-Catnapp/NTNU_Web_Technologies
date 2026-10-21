@@ -1,8 +1,3 @@
-//main function 
-function randomNum() {
-    return Math.floor(Math.random() * 10) + 1;
-};
-
 //callbacks
 function double(num) {
     if (typeof num !== 'number') {
@@ -24,11 +19,11 @@ function even_or_odd(num) {
     }
 }
 
-//Helper
-function showResultNum(callback) {
+//main function 
+function randomNum(callback) {
     //Retrieve id from input
-    const randomNumber = randomNum();
+    const randomNumber = Math.floor(Math.random() * 10) + 1;;
     const resultNum = callback(randomNumber);
 
     alert("Number was : " + randomNumber + " and result is : " + resultNum);
-}
+};
