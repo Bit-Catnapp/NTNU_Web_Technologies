@@ -3,13 +3,13 @@ const fs = require("fs/promises");
 async function manageFiles() {
     try {
         //A:  create/write database
-        await fs.writeFile("student.txt", "Alice/nBob/nCharlie");
+        await fs.writeFile("students.txt", "Alice/nBob/nCharlie");
         console.log("A. FIle created successfully.");
 
         //B: Reading and veryfying roster
         const data = await fs.readFile("students.txt", "utf8");
 
-        console.log("\nB. Current Roster COntents:");
+        console.log("\nB. Current Roster Contents:");
         console.log(data);
 
         //C: Appending new record

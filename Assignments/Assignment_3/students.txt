@@ -1,3 +1,2 @@
-Alice, Bob, Charlie
-David
+Alice/nBob/nCharlie
 David
