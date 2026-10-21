@@ -23,7 +23,7 @@
         <button onclick="randomNum(even_or_odd)">even_or_odd</button>
     <br>
     <hr>
-        <h2>Task 2</h2>
+    <h2>Task 2</h2>
         <h3>2.1 Campaign Management</h3>
         <Script src="Assignment_3_t2_1.js" tag="task2.1"></Script>
         <button onclick="sendCampaign('campaignName')">Send Campaign</button>
@@ -31,7 +31,7 @@
         <div id="status"></div>
         <div id="timer"></div>
         <div id="result"></div>
-        <br>
+    <br>
         <h3>2.2 Complex Mathematics</h3>
         <Script src="Assignment_3_t2_2.js" tag="task2.2"></Script>
         <button onclick="calculateFactorial('inputNumber')">Calculate Factorial</button>
@@ -39,9 +39,9 @@
         <div id="statusCalc"></div>
         <div id="timerCalc"></div>
         <div id="resultCalc"></div>
-     <br>
-     <hr>
-        <h2>Task 3</h2>
+    <br>
+    <hr>
+    <h2>Task 3</h2>
         <h3>3.1 Dice Roller</h3>
         <Script src="Assignment_3_t3_1.js" tag="task3.1"></Script>
         <button onclick="PlayDiceRoll()">Roll Dice</button>
@@ -57,9 +57,54 @@
         </form>
         <div id="discount"></div>
     <br>
-        <h2>Task 4</h2>
-        <h3>4.1 Async/await</h3>
+    <hr>
+    <h2>Task 4</h2>
+        <h3>4.1 Ware House</h3>
         <Script src="Assignment_3_t4_1.js" tag="task4.1"></Script>
-
+        <button onclick="processItem('itemName')">New price</button>
+        <form id="wareHouseForm">
+            <input type="name" id="itemName" placeholder="item name" required>
+            <input type="number" id="stock" placeholder="number of stocks" required>
+            <input type="checkbox" id="wareHouseOpen" placeholder="is it open?">
+        </form>
+        <div id="stockUpdate"></div>
+    <br>
+        <h3>4.2 Subscripiton System</h3>
+        <Script src="Assignment_3_t4_2.js" tag="task4.2"></Script>
+        <button onclick="applyUpgrade('accountName', 'yearsActive')">New price</button>
+        <form id="subscriptionForm">
+            <input type="name" id="accountName" placeholder="account name" required>
+            <input type="number" id="yearsActive" placeholder="years active" required>    
+        </form>
+        <div id="subscription"></div>
+    <hr>
+        <h2>Task 5</h2>
+        <h3>5.1 Booking Info</h3>
+        <Script src="Assignment_3_t5_1.js" tag="task5.1"></Script>
+        <button onclick="getBookingInfo()">URL-Link</button>
+        <div id="booking"></div>
+    <br>
+        <h3>5.2 Movies</h3>
+        <form actio="/filter.php" methode="GET">
+            <input type="text" name="genre" value="action">
+            <input type="number" name="year" value="2025">
+            <button type="submit">Filter Movies</button>
+            <br>After submitting: domain.../filter.php?genre=action&year=2025
+        </form>
+    <br>
+        <h3>5.3 Fligth Info</h3>
+        <Script src="Assignment_3_t5_3.js" tag="task5.3"></Script>
+        <button onclick="getFlight(`search`)">Search</button>
+        <div id="search"></div>
+    <br>
+        <h3>5.4 Network package</h3>
+        POST /checkout.php HTTP/1.1<br>
+        Host: shop.com<br>
+        Content-Type: application/x-www-form-urlencoded<br>
+        Content-Length: 20<br>
+        <br>
+        product_id=883&qty=2
+    <br>
+    <hr>
     </body>
 </html>

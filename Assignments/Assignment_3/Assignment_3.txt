@@ -467,9 +467,360 @@ Task 4. Async/await
 
 html
  ------------------|   
-
+<h3>4.1 Ware House</h3>
+        <Script src="Assignment_3_t4_1.js" tag="task4.1"></Script>
+        <button onclick="processItem('itemName')">New price</button>
+        <form id="wareHouseForm">
+            <input type="name" id="itemName" placeholder="item name" required>
+            <input type="number" id="stock" placeholder="number of stocks" required>
+            <input type="checkbox" id="wareHouseOpen" placeholder="is it open?">
+        </form>
+        <div id="stockUpdate"></div>
  ------------------|   
 JavaScript
  ------------------|   
- 
+// Async Functions
+async function checkoutStockLevel() {
+    return document.getElementById("stock").value;
+}
+
+async function isWarehouseOpen() {
+    return document.getElementById("wareHouseOpen").checked;
+}
+
+//Main
+async function processItem(itemName) {
+    // Waits for a returned valye before continuing
+    let wareHouseOpen = await isWarehouseOpen();
+
+    // Will not accesss this code until wareHouse has returned a value
+    if (!wareHouseOpen) {
+        //Warehouse closed
+        document.getElementById("stockUpdate").textContent = "Operation aborted. Warehouse is closed";
+
+    }
+    else {
+        //Warehouse open
+        document.getElementById("stockUpdate").innerHTML =
+            "Warehouse is Open<br> Preparing sync...";
+
+        //Retrieve string
+        const itemStr = document.getElementById(itemName).value;
+
+        //Wait for stock value and add the new number
+        let stock = await checkoutStockLevel();
+        let bufferStock = Number(stock) + 10; //Casting to make sure its a number
+
+        //Dsiplay timers
+        setTimeout(() => {
+            document.getElementById("stockUpdate").textContent =
+                `Tracking: ${itemStr} 
+                 has a total buffered inventory count of ${bufferStock} units`;
+
+            setTimeout(() => {
+                document.getElementById("wareHouseForm").reset();
+                document.getElementById("stockUpdate").textContent = "";
+            }, 3000)
+        }, 2000);
+    }
+}
  ------------------|   
+    8. Create a Subscription Upgrade System by considering the following steps:
+        Step 1: Write an async function named getLoyaltyDiscount(yearsActive)
+        that accepts a number representing how many years a user has been active.
+        Step 2: Inside this first function, perform a boolean check (yearsActive > 2).
+        If true, return a numerical discount of 15. If false, return a numerical
+        discount of 0.
+        Step 3: Write a second async function named applyUpgrade(accountName,
+        yearsActive) that accepts a string for the user's name and a number for their
+        active years.
+        Step 4: Inside the second function, use exactly one await expression to call
+        getLoyaltyDiscount(yearsActive) and store the result.
+        Step 5: Subtract the returned discount value from a base charge of 50, then
+        log the final balance to the console alongside the user's account name.
+html
+------------------|  
+<h3>4.2 Subscripiton System</h3>
+        <Script src="Assignment_3_t4_2.js" tag="task4.2"></Script>
+        <button onclick="applyUpgrade('accountName', 'yearsActive')">New price</button>
+           <form id="subscriptionForm">
+            <input type="name" id="accountName" placeholder="account name" required>
+            <input type="number" id="yearsActive" placeholder="years active" required>    
+        </form>
+        <div id="subscription"></div>
+------------------|  
+JavaScript
+------------------| 
+//Async Functions
+async function getLoyaltyDiscount(yearsActive) {
+    //Retrieve and type cast parameter for flag
+    let years = Number(document.getElementById(yearsActive).value);
+
+    if (years > 2) {
+        return 15;
+    }
+    else {
+        return 0;
+    }
+}
+
+//Main
+async function applyUpgrade(accountName, yearsActive) {
+    //Retrieve name
+    const name = document.getElementById(accountName).value;
+
+    //Wait for Discount and calculate
+    let loyaltyDiscount = await getLoyaltyDiscount(yearsActive);
+    let discount = 50 - loyaltyDiscount;
+
+    //Display update
+    document.getElementById("subscription").innerHTML =
+        `System Log: Starting upgrade process for Account = ${name}...<br>`;
+
+    //output logic
+    if (loyaltyDiscount > 0) {
+        //Dsiplay timers
+        setTimeout(() => {
+            document.getElementById("subscription").innerHTML =
+                `Invoice: Account = ${name} processed<br> 
+             Final balance due: ${discount}$`;
+
+            setTimeout(() => {
+                document.getElementById("subscription").innerHTML = "";
+                document.getElementById("subscriptionForm").reset();
+            }, 3000)
+        }, 2000);
+
+    }
+    else {
+        document.getElementById("subscription").innerHTML =
+            `Invoice: Account = ${name}<br> 
+             Found no discount<br>
+             Final balance due: ${discount}`;
+
+        setTimeout(() => {
+            document.getElementById("subscription").innerHTML = "";
+            document.getElementById("subscriptionForm").reset();
+        }, 3000);
+    }
+}
+------------------|  
+/////////////////////////////////////////////////////////////////////////
+Task 5. GET & POST
+    9. Create a system that extracts travel booking parameters by writing a function
+    called getBookingInfo() that initializes a full URL variable named urlString set
+    to "https://travel.com?price=1000&day=Wednesday", splits the string at the
+    question mark and selects index [1] to isolate the query segment, splits it again
+    at the ampersand symbol into separate property pairs, loops through the pair
+    entries using a traditional index-based loop to break each part at the equals
+    sign, and logs the resulting keys and values cleanly to the console.
+
+html
+------------------|  
+<h2>Task 5</h2>
+        <h3>5.1 Booking Info</h3>
+        <Script src="Assignment_3_t5_1.js" tag="task5.1"></Script>
+        <button onclick="getBookingInfo()">URL-Link</button>
+        <div id="booking"></div>
+------------------|  
+JavaScript
+------------------|  
+//Main
+function getBookingInfo() {
+    //local variables
+    let display = "";
+    let urlString = "https://travel.com?price=1000&day=Wednesday";
+    let parts = urlString.split("?"); // [https://travel.com, price=1000&day=Wednesday]
+    let pairs = parts[1].split("&"); // [price=1000, day=Wednesday]
+
+    //Iterating over the arrays
+    for (let i = 0; i < pairs.length; i++) {
+        let segments = pairs[i].split("=");
+
+        let key = segments[0];
+        let value = segments[1];
+
+        display += `
+        Key is: ${key}<br>
+        Value is: ${value}<br>`;
+
+    }
+    document.getElementById("booking").innerHTML = display;
+
+    setTimeout(() => {
+        document.getElementById("booking").innerHTML = "";
+    }, 2000);
+}
+------------------|  
+10. Create an HTML form structure using following steps:
+    Step 1: that handles a movie filter query by setting the target action to
+    /filter.php and specifying the GET transmission method.
+    Step 2: Inside the form, add a text input field with the name attribute set to
+    genre and a default value of action.
+    Step 3: Add a numeric input field with the name attribute set to year and a
+    default value of 2025.
+    Step 4: Provide a submit button labeled "Filter Movies".
+    Step 5: Write down what the exact resulting URL address will look like in the
+    browser bar after the user clicks the submit button with the default values.
+html
+------------------|  
+<h3>5.2 Movies</h3>
+        <Script src="Assignment_3_t5_2.js" tag="task5.1"></Script>
+        <form actio="/filter.php" methode="GET">
+            <input type="text" name="genre" value="action">
+            <input type="number" name="year" value="2025">
+            <button type="submit">Filter Movies</button>
+            <br>After submitting: domain.../filter.php?genre=action&year=2025
+        </form>
+------------------|  
+    11. Write a JavaScript function called getFlightInfo() that initializes a full URL
+    variable named urlString set to
+    "https://fly.com?name=norwegian&passenger=60", isolates the query data
+    string by splitting at the question mark, instantiates a URLSearchParams utility
+    object, utilizes a for...of loop over its entries to unpack the parameters, and
+    outputs each structural key and value sequence to your logs.
+
+html
+------------------|
+<h3>5.3 Fligth Info</h3>
+        <Script src="Assignment_3_t5_3.js" tag="task5.3"></Script>
+        <button onclick="getFlight(`search`)">Search</button>
+        <div id="search"></div> 
+------------------| 
+
+JavaScript
+------------------|
+// Main
+function getFlight(){
+    let display = "";
+    let urlString = "https://fly.com?name=norwegian&passenger=60";
+
+    let parts = urlString.split("?"); // [https://fly.com, name=norwegian&passenger=60]
+    let queryString = parts[1]; // [name=norwegian&passenger=60]
+    let params = new URLSearchParams(queryString);
+
+    //Iterating over the arrays for-each loop
+    //Automaticly creates pairs usinng "&" to split, uses the "=" to make the pairs
+    for (let entry of params.entries()) {
+       
+        let key = entry[0];
+        let value = entry[1];
+
+        display += `
+        Key is: ${key}<br>
+        Value is: ${value}<br>`;
+
+    }
+    document.getElementById("search").innerHTML = display;
+
+    setTimeout(() => {
+        document.getElementById("search").innerHTML = "";
+    }, 2000);
+} 
+------------------| 
+    12. Write a raw HTTP text block that represents the network packet generated by
+    a web browser when a form containing checkout data is submitted to a server
+    domain named shop.com at the endpoint /checkout.php using the POST
+    method and a payload body containing the keys product_id=883 and qty=2
+    linked by an ampersand.
+
+html
+------------------|
+<h3>5.4 Network package</h3>
+        POST /checkout.php HTTP/1.1<br>
+        Host: shop.com<br>
+        Content-Type: application/x-www-form-urlencoded<br>
+        Content-Length: 20<br>
+        <br>
+        product_id=883&qty=2
+------------------|
+
+/////////////////////////////////////////////////////////////////////////
+Task 6. Backend Development
+    13. The student registration module is being built using Node.js. Write a script
+    utilizing the modern asynchronous fs/promises module that completes the
+    following steps:
+        A. Create and Write Database: Create a brand-new file called students.txt
+        and populate it with the names Alice, Bob, and Charlie on individual lines.
+        Upon successful creation, output the message "File created
+        successfully." to the console.
+        B. Read and Verify Roster: Immediately read the newly created
+        students.txt file from disk and display its raw contents directly within the
+        console terminal to verify accuracy.
+        C. Append New Record: Modify the file by appending the student name David
+        to the end of students.txt without deleting or overwriting any of the existing
+        three records. Ensure David begins cleanly on a fresh line.
+        D. Verify Database Existence: Programmatically verify whether the
+        students.txt database file exists on the hard drive. If it is detected, print
+        "The file exists." to the console; otherwise, print "The file does
+        not exist.".
+        E. Archive and Rename File: Simulate an database archiving step by looking
+        for a file named oldstudents.txt and renaming it to students.txt. After
+        successfully changing the name, display the confirmation message "File
+        renamed successfully.".
+
+JavaScript
+------------------|
+const fs = require("fs/promises");
+
+async function manageFiles() {
+    try {
+        //A:  create/write database
+        await fs.writeFile("student.txt", "Alice/nBob/nCharlie");
+        console.log("A. FIle created successfully.");
+
+        //B: Reading and veryfying roster
+        const data = await fs.readFile("students.txt", "utf8");
+
+        console.log("\nB. Current Roster COntents:");
+        console.log(data);
+
+        //C: Appending new record
+        await fs.appendFile("students.txt", "\nDavid");
+        console.log("\nC. Record appended successfully:");
+
+        //D: Verify the existence of the database
+        try {
+            await fs.access("students.txt");
+            console.log("D. The file exists.");
+        } catch {
+            console.log("D. The file does not exist.");
+        }
+
+        //E:  Renaming file
+        await fs.writeFile(
+            "oldstudents.txt",
+            "Old database"
+        );
+
+        await fs.rename(
+            "oldstudents.txt",
+            "students_archive.txt"
+        );
+
+        console.log("E. File renamed successfully.");
+
+    } catch (error) {
+        console.error(error);
+    }
+
+};
+
+manageFiles();
+------------------|
+pws
+------------------|
+ & "C:\Program Files\nodejs\node.exe" .\Assignment_3_t6.js
+------------------|
+
+output
+------------------|
+A. FIle created successfully.
+
+B. Current Roster COntents:
+Alice, Bob, Charlie
+
+C. Record appended successfully:
+D. The file exists.
+E. File renamed successfully.
+------------------|
